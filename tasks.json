@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run llama.cpp (CPU quick test)",
+        "type": "shell",
+        "command": "bash scripts/llama_cpp_setup_and_run.sh",
+        "problemMatcher": []
+      },
+      {
+        "label": "Run llama.cpp (GPU offload 35)",
+        "type": "shell",
+        "command": "NGL=35 bash scripts/llama_cpp_setup_and_run.sh",
+        "problemMatcher": []
+      }
+    ]
+  }
+  

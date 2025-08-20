@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Train (Unsloth LoRA)",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/train.py",
+        "console": "integratedTerminal",
+        "envFile": "${workspaceFolder}/.env"
+      },
+      {
+        "name": "Infer (HF merged)",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/infer.py",
+        "console": "integratedTerminal",
+        "envFile": "${workspaceFolder}/.env"
+      },
+      {
+        "name": "Run llama.cpp (CPU quick test)",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/llama.cpp/build/bin/main",
+        "args": [
+          "-m", "${workspaceFolder}/checkpoints/merged/model-q4_k_m.gguf",
+          "-n", "256",
+          "-p", "<|user|>\\nHelp routine\\nI have combination skin with uneven tone.\\n<|assistant|>\\n"
+        ],
+        "cwd": "${workspaceFolder}",
+        "MIMode": "gdb",
+        "miDebuggerPath": "/usr/bin/gdb",
+        "console": "integratedTerminal"
+      }
+    ]
+  }
+  
