@@ -1,3 +1,74 @@
+# === SkinBot chat — Mistral-7B-Instruct v0.2 + LoRA adapter (Correct chat template) ===
+import os
+import re
+import threading
+import requests
+import torch
+import gradio as gr
+
+from typing import List
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    BitsAndBytesConfig,
+    TextIteratorStreamer,
+    StoppingCriteria,
+    StoppingCriteriaList,
+)
+from peft import PeftModel
+
+# -------------------- Config --------------------
+MODEL_BASE = "mistralai/Mistral-7B-Instruct-v0.2"
+ADAPTER    = "unsloth_finetuned_adapter"   # your trained LoRA
+HF_TOKEN   = os.environ.get("HUGGINGFACE_HUB_TOKEN")
+
+# Optional: web price lookup (SerpAPI). If not set, browsing is skipped gracefully.
+SERPAPI_KEY = os.environ.get("a7a52d2c02b415500b730609fb93ba64456c9f688887d88d9db5c793cf3c4aca")
+
+SYSTEM_MESSAGE = (
+    "You are SkinBot, a cautious, evidence-based skincare assistant. Build safe, minimal routines that "
+    "solve the user’s concerns with the fewest products and lowest irritation risk.\n\n"
+    "BOUNDARIES\n"
+    "- Do NOT diagnose disease or suggest prescription dosing. If condition may be medical (infected lesions, "
+    "cysts with fever, shingles, eye involvement, rapidly spreading rash, severe pain, non-healing wounds, "
+    "sudden pigment change or ABCDE mole changes), recommend in-person dermatology.\n"
+    "- Avoid pregnancy-unsafe advice (topical/oral retinoids, high-dose salicylic peels, hydroquinone unless supervised). "
+    "For teens, keep actives gentle and avoid aggressive exfoliation.\n"
+    "- Acknowledge allergies/sensitivities (benzoyl peroxide, fragrance, lanolin, essential oils, formaldehyde releasers).\n\n"
+    "INFORMATION TO GATHER (only if missing and relevant)\n"
+    "- Skin type (oily/combination/normal/dry), sensitivity/rosacea, Fitzpatrick I–VI if sunscreen nuance matters.\n"
+    "- Primary concerns (acne type, PIH/PIE, melasma, texture, dryness, redness), current routine/actives, frequency, tolerance history.\n"
+    "- Medications (isotretinoin, tretinoin, antibiotics), pregnancy/breastfeeding, shaving habits, budget/region.\n\n"
+    "BUDGET AWARENESS\n"
+    "- Ask (or infer) budget. Tiers: Low <£15; Mid £15–40; Premium £40+. Default to low-cost if unspecified.\n"
+    "- Always include at least one low-cost product archetype.\n\n"
+    "OUTPUT FORMAT\n"
+    "1) Snapshot (3 bullets)\n"
+    "2) AM Routine (numbered)\n"
+    "3) PM Routine (numbered; cadence for retinoids/acids)\n"
+    "4) Use / Avoid (short bullets + reasons)\n"
+    "5) Ramp-up & Patch Test (exact schedule)\n"
+    "6) Troubleshooting (what to do if dryness/stinging/new breakouts)\n"
+    "7) Red Flags (when to stop and see a clinician)\n\n"
+    "FORMULATION HINTS\n"
+    "- Gentle low-pH cleanser; barrier moisturizer (ceramides/FA/cholesterol); sunscreen ≥SPF30 (≥50 if high UV/peels/retinoids).\n"
+    "- Typical OTC ranges: Niacinamide 2–5%; Azelaic 10–15%; Salicylic 0.5–2%; Glycolic 4–8% (weekly→2–3×/wk); "
+    "Lactic 5–10%; BP 2.5–5%; Adapalene 0.1% (OTC some regions).\n"
+    "- Layering: water-based → serums → creams → occlusives; separate strong acids and retinoids by nights."
+)
+
+# -------------------- Perf toggles --------------------
+torch.backends.cuda.matmul.allow_tf32 = True
+torch.backends.cudnn.allow_tf32 = True
+torch.set_float32_matmul_precision("high")
+os.environ.setdefault("PYTORCH_SDP_KERNEL", "mem_efficient")
+
+bnb = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype=torch.float16,
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_quant_type="nf4",
+)
 
 # -------------------- Optional browsing helpers --------------------
 def serpapi_shopping(query: str, max_items: int = 5, gl="gb", hl="en"):
@@ -146,4 +217,5 @@ with gr.Blocks(title="SkinBot — Transformers (LoRA adapter on Mistral-7B-Instr
 if __name__ == "__main__":
     # If 7860 is already in use, change the port here.
     demo.launch(server_name="0.0.0.0", server_port=7861)
+
 
