@@ -28,38 +28,52 @@ Go to Google Colab
 
 2. Install dependencies
 
+```
 %pip -q install --upgrade "gradio>=4.44.0" "pandas>=2.2.2" "requests>=2.31.0"
+```
 
 3. Clone/download this repo
 
+```
 !git clone https://github.com/YOUR-USERNAME/skinbot.git
 %cd skinbot
+```
 
 4. Mount Google Drive
 
 Upload your skincare catalog CSV (skincare_products_clean.csv) into your Google Drive.
 
 from google.colab import drive
+```
 drive.mount('/content/drive', force_remount=True)
+```
 
 SkinBot will look for:
+```
 /content/drive/MyDrive/skincare_products_clean.csv
+```
 
 5. Run the chatbot
+```
 !python unsloth/chat_transformers_adapter.py
+```
 
 Gradio will launch and give you a link, e.g.:
+```
 http://127.0.0.1:7860  (local)
 https://xxxxx.gradio.live (shareable)
+```
 
-PI Keys
+API Keys
 
 SkinBot uses OpenRouter
  (default) or OpenAI.
 
 In Colab, set your key before running the script:
+```
 import os
 os.environ["OPENROUTER_API_KEY"] = "your_api_key_here"
+```
 
 User Study
 
