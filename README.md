@@ -1,6 +1,7 @@
 # The SkinBot
 
 Student ID: 24039973
+
 Student Name: Miruna Popescu 
 
 SkinBot is a conversational AI chatbot designed to provide safe, budget-aware skincare recommendations. Unlike generic LLMs, SkinBot is grounded in curated data through combining a product catalog, a system rubric for cautious responses, and fallback conversational seeds — to improve user trust, safety, and willingness to act on skincare guidance.
