@@ -8,17 +8,17 @@ SkinBot is a conversational AI chatbot designed to provide safe, budget-aware sk
 
 ## Features
 
-- Conversational AI — built on a hosted Large Language Model (LLM).
+- Conversational AI: built on a hosted Large Language Model (LLM).
 
-- Cautious, evidence-based tone — avoids medical claims, always encourages professional validation.
+- Cautious, evidence-based tone: avoids medical claims, always encourages professional validation.
 
-- Grounded responses — linked to a curated skincare product catalog (brand, name, price, retailer, URL).
+- Grounded responses: linked to a curated skincare product catalog (brand, name, price, retailer, URL).
 
-- Interactive interface — powered by Gradio
+- Interactive interface: powered by Gradio
 
-- Budget-awareness — recommends affordable products (e.g., “under £15”).
+- Budget-awareness: recommends affordable products (e.g., “under £15”).
 
-- Disclaimers for sensitive scenarios — e.g., pregnancy, acne, or allergies.
+- Disclaimers for sensitive scenarios: e.g., pregnancy, acne, or allergies.
 
 
  ## How to Run (Colab)
