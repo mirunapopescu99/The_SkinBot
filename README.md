@@ -68,6 +68,8 @@ http://127.0.0.1:7860  (local)
 https://xxxxx.gradio.live (shareable)
 ```
 
+6. Download the Kaggle skincare dataset: https://www.kaggle.com/code/eward96/skincare-recommendation-engine/input 
+
 ## API Keys
 
 SkinBot uses OpenRouter
