@@ -102,3 +102,8 @@ Streamlit/web deployment for easier public access.
 
 Developed as part of a Master’s dissertation at UAL: Creative Computing Institute (2025).
 Data Science and AI in The Creative Industries 
+
+
+LLM Use Disclaimer
+The use of Large Language Models (LLMs) under the name of ChatGPT were used during this project in order to build the code structure such as debugging and refinement. The chatbot was tested independently but the LLMs provided assistance in overcoming technical challenges and improving the clarity in documentation. All design decisions, implementation choices and final decisions remain my own. 
+
