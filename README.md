@@ -1,5 +1,8 @@
 # The SkinBot
 
+Student ID: 24039973
+Student Name: Miruna Popescu 
+
 SkinBot is a conversational AI chatbot designed to provide safe, budget-aware skincare recommendations. Unlike generic LLMs, SkinBot is grounded in curated data through combining a product catalog, a system rubric for cautious responses, and fallback conversational seeds — to improve user trust, safety, and willingness to act on skincare guidance.
 
 ## Features
@@ -17,7 +20,7 @@ SkinBot is a conversational AI chatbot designed to provide safe, budget-aware sk
 - Disclaimers for sensitive scenarios — e.g., pregnancy, acne, or allergies.
 
 
- How to Run (Colab)
+ ## How to Run (Colab)
 
 SkinBot is designed to run in Google Colab with minimal setup.
 
@@ -64,7 +67,7 @@ http://127.0.0.1:7860  (local)
 https://xxxxx.gradio.live (shareable)
 ```
 
-API Keys
+## API Keys
 
 SkinBot uses OpenRouter
  (default) or OpenAI.
@@ -75,7 +78,7 @@ import os
 os.environ["OPENROUTER_API_KEY"] = "your_api_key_here"
 ```
 
-User Study
+## User Study
 
 A small-scale user study (N=6) assessed trust, safety, reliance, and long-term use.
 Findings:
