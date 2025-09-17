@@ -30,20 +30,27 @@ SkinBot is designed to run in Google Colab with minimal setup.
 Go to Google Colab
  and start a new notebook.
 
-2. Install dependencies
+
+ ### 2. Set Runtime
+Go to **Runtime > Change runtime type** and choose:  
+- Runtime type: **Python 3**  
+- Hardware accelerator: **T4 GPU** (or A100 GPU if available)  
+- Runtime version: **Latest (recommended)** 
+
+### 3. Install dependencies
 
 ```
 %pip -q install --upgrade "gradio>=4.44.0" "pandas>=2.2.2" "requests>=2.31.0"
 ```
 
-3. Clone/download this repo
+### 4. Clone/download this repo
 
 ```
 !git clone https://github.com/YOUR-USERNAME/skinbot.git
 %cd skinbot
 ```
 
-4. Mount Google Drive
+### 5. Mount Google Drive
 
 Upload your skincare catalog CSV (skincare_products_clean.csv) into your Google Drive.
 
@@ -57,7 +64,7 @@ SkinBot will look for:
 /content/drive/MyDrive/skincare_products_clean.csv
 ```
 
-5. Run the chatbot
+### 6. Run the chatbot
 ```
 !python unsloth/chat_transformers_adapter.py
 ```
@@ -68,7 +75,7 @@ http://127.0.0.1:7860  (local)
 https://xxxxx.gradio.live (shareable)
 ```
 
-6. Download the Kaggle skincare dataset: https://www.kaggle.com/code/eward96/skincare-recommendation-engine/input 
+### 7. Download the Kaggle skincare dataset: https://www.kaggle.com/code/eward96/skincare-recommendation-engine/input 
 
 ## API Keys
 
