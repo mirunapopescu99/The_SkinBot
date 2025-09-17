@@ -25,7 +25,7 @@ SkinBot is a conversational AI chatbot designed to provide safe, budget-aware sk
 
 SkinBot is designed to run in Google Colab with minimal setup.
 
-1. Open Colab
+### 1. Open Colab
 
 Go to Google Colab
  and start a new notebook.
@@ -52,14 +52,14 @@ Go to **Runtime > Change runtime type** and choose:
 
 ### 5. Mount Google Drive
 
-Upload your skincare catalog CSV (skincare_products_clean.csv) into your Google Drive.
+ Upload your skincare catalog CSV (skincare_products_clean.csv) into your Google Drive.
 
-from google.colab import drive
+ from google.colab import drive
 ```
 drive.mount('/content/drive', force_remount=True)
 ```
 
-SkinBot will look for:
+## SkinBot will look for:
 ```
 /content/drive/MyDrive/skincare_products_clean.csv
 ```
@@ -69,7 +69,7 @@ SkinBot will look for:
 !python unsloth/chat_transformers_adapter.py
 ```
 
-Gradio will launch and give you a link, e.g.:
+## Gradio will launch and give you a link, e.g.:
 ```
 http://127.0.0.1:7860  (local)
 https://xxxxx.gradio.live (shareable)
@@ -82,7 +82,7 @@ https://xxxxx.gradio.live (shareable)
 SkinBot uses OpenRouter
  (default) or OpenAI.
 
-In Colab, set your key before running the script:
+## In Colab, set your key before running the script:
 ```
 import os
 os.environ["OPENROUTER_API_KEY"] = "your_api_key_here"
@@ -99,7 +99,7 @@ Safety disclaimers increased trust, but consistency was critical.
 
 Budget-aware routines were appreciated, but users wanted more transparency in sources.
 
-Future Work
+### Future Work
 
 Persistent safety disclaimers in every response.
 
@@ -113,6 +113,6 @@ Developed as part of a Master’s dissertation at UAL: Creative Computing Instit
 Data Science and AI in The Creative Industries 
 
 
-LLM Use Disclaimer
+### LLM Use Disclaimer
 The use of Large Language Models (LLMs) under the name of ChatGPT were used during this project in order to build the code structure such as debugging and refinement. The chatbot was tested independently but the LLMs provided assistance in overcoming technical challenges and improving the clarity in documentation. All design decisions, implementation choices and final decisions remain my own. 
 
